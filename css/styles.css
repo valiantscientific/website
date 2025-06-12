@@ -25,6 +25,7 @@ a {
 
 /* Navbar */
 .navbar {
+  display: flex;
   background: #fff;
   padding: 20px 0;
   position: sticky;
