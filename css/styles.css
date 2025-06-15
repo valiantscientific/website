@@ -3164,6 +3164,7 @@ figure {
   margin-bottom: 1.5rem;
   font-family: Work Sans, sans-serif;
   font-size: calc(5rem + 3vh);
+  font-size: 4.5rem;
   font-weight: 300;
   line-height: 1.05em;
   position: relative;
@@ -4191,12 +4192,13 @@ figure {
 .hp-hero-image-wrapper {
   justify-content: flex-start;
   align-items: center;
-  width: 40%;
-  max-height: 85%;
+  width: 50%;
+  max-height: 75%;
   display: flex;
   position: absolute;
   inset: auto 0% 0% auto;
   overflow: hidden;
+  /* object-fit: contain; */
 }
 
 .hp-hero-image {
@@ -4205,6 +4207,9 @@ figure {
   width: 100%;
   max-width: 750px;
   height: 100%;
+  object-fit: contain;
+  
+
 }
 
 .hp-hero_text-wrapper {
@@ -4990,7 +4995,7 @@ figure {
   }
 
   .paragraph-18 {
-    font-size: 0.2rem;
+    font-size: 0.2hp-hero-imagerem;
   }
 
   .paragraph-12 {
@@ -6207,7 +6212,9 @@ figure {
   }
 
   .hp-hero-image {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 4 / 2;
+    width: 80%;
+    position: relative;
   }
 
   .hp-hero_text-wrapper {
