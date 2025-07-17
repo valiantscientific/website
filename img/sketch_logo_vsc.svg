@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.52248527"
-     inkscape:cx="395.22645"
-     inkscape:cy="866.05312"
+     inkscape:cx="394.26949"
+     inkscape:cy="865.09616"
      inkscape:window-width="1350"
      inkscape:window-height="1237"
      inkscape:window-x="1784"
@@ -44,7 +44,7 @@
        x="68.869568"
        y="101.33441"
        id="text1"
-       inkscape:export-filename="text1.png"
+       inkscape:export-filename="logo2.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
@@ -70,7 +70,7 @@
        cy="69.122765"
        r="5.9459739" />
     <rect
-       style="fill:none;stroke:#000000;stroke-width:1.24265;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:6.543;stroke-dasharray:none"
        id="rect2"
        width="103.0717"
        height="102.56531"
