@@ -66,7 +66,7 @@ dfn {
 
 h1 {
   margin: .67em 0;
-  font-size: 2em;
+  /* font-size: 2em; */
 }
 
 mark {
@@ -3161,10 +3161,11 @@ figure {
   z-index: 6;
   color: var(--text--default--black);
   text-transform: uppercase;
+  text-align: center;
   margin-bottom: 1.5rem;
   font-family: Work Sans, sans-serif;
   font-size: calc(5rem + 3vh);
-  font-size: 4.5rem;
+  font-size: 2.5rem;
   font-weight: 300;
   line-height: 1.05em;
   position: relative;
@@ -4996,6 +4997,7 @@ figure {
 
   .paragraph-18 {
     font-size: 0.2hp-hero-imagerem;
+    text-align: justify;
   }
 
   .paragraph-12 {
