@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Analytics — Valiant Scientific</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <style>
+        body { background: #f5f6f8; }
+        .stat-card .value { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+        .stat-card .label { font-size: 0.85rem; color: #6c757d; margin-top: 0.25rem; }
+        .flag { font-size: 1.1rem; margin-right: 0.35rem; }
+        #login-wrap, #setup-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .auth-card { width: 22rem; }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Setup screen (first visit — no password set yet) ─────────────────── -->
+    <div id="setup-wrap" class="d-none">
+        <div class="card shadow auth-card">
+            <div class="card-body p-4">
+                <h5 class="mb-1 fw-bold">Create Admin Password</h5>
+                <p class="text-muted small mb-3">Set a password to protect this analytics page. You will need it every time you return.</p>
+                <div id="setup-error" class="alert alert-danger d-none"></div>
+                <div class="mb-3">
+                    <label class="form-label" for="setup-pw">Password</label>
+                    <input type="password" id="setup-pw" class="form-control" placeholder="Choose a password">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="setup-pw2">Confirm Password</label>
+                    <input type="password" id="setup-pw2" class="form-control" placeholder="Repeat password">
+                </div>
+                <button id="setup-btn" class="btn btn-primary w-100">Set Password & Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Login screen ─────────────────────────────────────────────────────── -->
+    <div id="login-wrap" class="d-none">
+        <div class="card shadow auth-card">
+            <div class="card-body p-4">
+                <h5 class="mb-1 fw-bold">Analytics Login</h5>
+                <p class="text-muted small mb-3">Valiant Scientific — Visitor Dashboard</p>
+                <div id="login-error" class="alert alert-danger d-none">Incorrect password.</div>
+                <div class="mb-3">
+                    <label class="form-label" for="login-pw">Password</label>
+                    <input type="password" id="login-pw" class="form-control" placeholder="Enter password" autofocus>
+                </div>
+                <button id="login-btn" class="btn btn-primary w-100">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Dashboard ────────────────────────────────────────────────────────── -->
+    <div id="dashboard" class="d-none">
+
+        <nav class="navbar navbar-dark" style="background:#1a1a2e;">
+            <div class="container-fluid px-4">
+                <span class="navbar-brand fw-semibold">Valiant Scientific &mdash; Visitor Analytics</span>
+                <div class="d-flex gap-2">
+                    <button id="reset-pw-btn" class="btn btn-outline-warning btn-sm">Reset Password</button>
+                    <button id="clear-btn" class="btn btn-outline-danger btn-sm">Clear Data</button>
+                    <a href="/" class="btn btn-outline-light btn-sm">Back to Site</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid px-4 py-4">
+
+            <!-- Summary stats -->
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-md-3">
+                    <div class="card shadow-sm stat-card text-center py-3">
+                        <div class="value text-primary" id="stat-total">—</div>
+                        <div class="label">Total Visits</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="card shadow-sm stat-card text-center py-3">
+                        <div class="value text-success" id="stat-today">—</div>
+                        <div class="label">Visits Today</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="card shadow-sm stat-card text-center py-3">
+                        <div class="value text-warning" id="stat-week">—</div>
+                        <div class="label">This Week</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="card shadow-sm stat-card text-center py-3">
+                        <div class="value text-danger" id="stat-countries">—</div>
+                        <div class="label">Countries</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="row g-3 mb-4">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header fw-semibold">Visits — Last 30 Days</div>
+                        <div class="card-body">
+                            <canvas id="time-chart" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header fw-semibold">Top Countries</div>
+                        <div class="card-body">
+                            <canvas id="country-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Country breakdown table + recent visits -->
+            <div class="row g-3">
+                <div class="col-lg-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header fw-semibold">Visits by Country</div>
+                        <div class="card-body p-0">
+                            <table class="table table-sm table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr><th>Country</th><th class="text-end">Visits</th><th class="text-end">%</th></tr>
+                                </thead>
+                                <tbody id="country-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header fw-semibold">Recent Visits <span class="text-muted fw-normal small">(latest 100)</span></div>
+                        <div class="card-body p-0" style="max-height:420px; overflow-y:auto;">
+                            <table class="table table-sm table-hover mb-0">
+                                <thead class="table-light sticky-top">
+                                    <tr><th>Date &amp; Time</th><th>Country</th><th>City</th><th>Region</th></tr>
+                                </thead>
+                                <tbody id="visits-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-muted small mt-4 mb-0">
+                Note: visits are stored in this browser's local storage and reflect sessions from browsers that have accessed the site.
+                For cross-device tracking consider integrating a backend service such as Firebase.
+            </p>
+
+        </div>
+    </div>
+
+    <script>
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    async function sha256(str) {
+        const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+        return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+    }
+
+    function flag(code) {
+        if (!code || code.length !== 2) return '';
+        return String.fromCodePoint(
+            0x1F1E6 - 65 + code.charCodeAt(0),
+            0x1F1E6 - 65 + code.charCodeAt(1)
+        );
+    }
+
+    function show(id) { document.getElementById(id).classList.remove('d-none'); }
+    function hide(id) { document.getElementById(id).classList.add('d-none'); }
+
+    const HASH_KEY   = 'vs_admin_hash';
+    const SESSION_KEY = 'vs_admin_auth';
+
+    // ── Auth flow ─────────────────────────────────────────────────────────────
+
+    const storedHash = localStorage.getItem(HASH_KEY);
+
+    if (!storedHash) {
+        show('setup-wrap');
+        initSetup();
+    } else if (sessionStorage.getItem(SESSION_KEY) === '1') {
+        show('dashboard');
+        renderDashboard();
+    } else {
+        show('login-wrap');
+        initLogin();
+    }
+
+    function initSetup() {
+        var btn  = document.getElementById('setup-btn');
+        var err  = document.getElementById('setup-error');
+        var pw1  = document.getElementById('setup-pw');
+        var pw2  = document.getElementById('setup-pw2');
+
+        async function doSetup() {
+            err.classList.add('d-none');
+            if (pw1.value.length < 8) {
+                err.textContent = 'Password must be at least 8 characters.';
+                err.classList.remove('d-none');
+                return;
+            }
+            if (pw1.value !== pw2.value) {
+                err.textContent = 'Passwords do not match.';
+                err.classList.remove('d-none');
+                return;
+            }
+            localStorage.setItem(HASH_KEY, await sha256(pw1.value));
+            sessionStorage.setItem(SESSION_KEY, '1');
+            hide('setup-wrap');
+            show('dashboard');
+            renderDashboard();
+        }
+
+        btn.addEventListener('click', doSetup);
+        [pw1, pw2].forEach(function (el) {
+            el.addEventListener('keydown', function (e) { if (e.key === 'Enter') doSetup(); });
+        });
+    }
+
+    function initLogin() {
+        var btn = document.getElementById('login-btn');
+        var err = document.getElementById('login-error');
+        var pw  = document.getElementById('login-pw');
+
+        async function doLogin() {
+            err.classList.add('d-none');
+            var hash = await sha256(pw.value);
+            if (hash === localStorage.getItem(HASH_KEY)) {
+                sessionStorage.setItem(SESSION_KEY, '1');
+                hide('login-wrap');
+                show('dashboard');
+                renderDashboard();
+            } else {
+                err.classList.remove('d-none');
+                pw.value = '';
+                pw.focus();
+            }
+        }
+
+        btn.addEventListener('click', doLogin);
+        pw.addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
+    }
+
+    // ── Dashboard ─────────────────────────────────────────────────────────────
+
+    function renderDashboard() {
+        var visits = JSON.parse(localStorage.getItem('vs_visits') || '[]');
+
+        var now       = Date.now();
+        var todayStart = new Date(); todayStart.setHours(0, 0, 0, 0);
+        var weekStart  = new Date(); weekStart.setDate(weekStart.getDate() - 6); weekStart.setHours(0, 0, 0, 0);
+
+        // ── Summary stats
+        document.getElementById('stat-total').textContent    = visits.length;
+        document.getElementById('stat-today').textContent    = visits.filter(function (v) { return v.ts >= todayStart.getTime(); }).length;
+        document.getElementById('stat-week').textContent     = visits.filter(function (v) { return v.ts >= weekStart.getTime(); }).length;
+        var knownCountries = new Set(visits.map(function (v) { return v.country; }).filter(function (c) { return c && c !== 'Unknown'; }));
+        document.getElementById('stat-countries').textContent = knownCountries.size;
+
+        // ── Country counts
+        var countryCounts = {};
+        visits.forEach(function (v) {
+            var c = v.country || 'Unknown';
+            if (!countryCounts[c]) countryCounts[c] = { count: 0, code: v.country_code || '' };
+            countryCounts[c].count++;
+        });
+        var sortedCountries = Object.entries(countryCounts)
+            .sort(function (a, b) { return b[1].count - a[1].count; });
+
+        // ── Country doughnut chart (top 8)
+        var top8 = sortedCountries.slice(0, 8);
+        var palette = ['#0d6efd','#198754','#ffc107','#dc3545','#0dcaf0','#6f42c1','#fd7e14','#adb5bd'];
+        new Chart(document.getElementById('country-chart'), {
+            type: 'doughnut',
+            data: {
+                labels: top8.map(function (e) { return e[0]; }),
+                datasets: [{ data: top8.map(function (e) { return e[1].count; }), backgroundColor: palette }]
+            },
+            options: {
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+                cutout: '60%'
+            }
+        });
+
+        // ── Country table
+        var total = visits.length || 1;
+        var ctbody = document.getElementById('country-table');
+        if (sortedCountries.length === 0) {
+            ctbody.innerHTML = '<tr><td colspan="3" class="text-center text-muted py-2">No data yet.</td></tr>';
+        } else {
+            ctbody.innerHTML = sortedCountries.map(function (e) {
+                var pct = ((e[1].count / total) * 100).toFixed(1);
+                return '<tr><td><span class="flag">' + flag(e[1].code) + '</span>' + e[0] + '</td>' +
+                       '<td class="text-end">' + e[1].count + '</td>' +
+                       '<td class="text-end text-muted">' + pct + '%</td></tr>';
+            }).join('');
+        }
+
+        // ── Time chart (last 30 days)
+        var days = [];
+        for (var i = 29; i >= 0; i--) {
+            var d = new Date();
+            d.setDate(d.getDate() - i);
+            d.setHours(0, 0, 0, 0);
+            days.push({ label: d.toLocaleDateString('en-GB', { month: 'short', day: 'numeric' }), start: d.getTime() });
+        }
+        var dayCounts = {};
+        days.forEach(function (d) { dayCounts[d.label] = 0; });
+        visits.forEach(function (v) {
+            for (var i = 0; i < days.length; i++) {
+                var end = i < days.length - 1 ? days[i + 1].start : Infinity;
+                if (v.ts >= days[i].start && v.ts < end) {
+                    dayCounts[days[i].label]++;
+                    break;
+                }
+            }
+        });
+        new Chart(document.getElementById('time-chart'), {
+            type: 'bar',
+            data: {
+                labels: days.map(function (d) { return d.label; }),
+                datasets: [{
+                    label: 'Visits',
+                    data: days.map(function (d) { return dayCounts[d.label]; }),
+                    backgroundColor: 'rgba(13,110,253,0.65)',
+                    borderRadius: 3
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } }, x: { ticks: { maxRotation: 45, font: { size: 10 } } } }
+            }
+        });
+
+        // ── Recent visits table
+        var tbody = document.getElementById('visits-table');
+        var recent = visits.slice().reverse().slice(0, 100);
+        if (recent.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted py-3">No visits recorded yet.</td></tr>';
+        } else {
+            tbody.innerHTML = recent.map(function (v) {
+                var dt = new Date(v.ts).toLocaleString();
+                return '<tr><td class="text-nowrap">' + dt + '</td>' +
+                       '<td><span class="flag">' + flag(v.country_code) + '</span>' + (v.country || '—') + '</td>' +
+                       '<td>' + (v.city || '—') + '</td>' +
+                       '<td>' + (v.region || '—') + '</td></tr>';
+            }).join('');
+        }
+
+        // ── Clear data button
+        document.getElementById('clear-btn').addEventListener('click', function () {
+            if (confirm('Delete all visitor data? This cannot be undone.')) {
+                localStorage.removeItem('vs_visits');
+                location.reload();
+            }
+        });
+
+        // ── Reset password button
+        document.getElementById('reset-pw-btn').addEventListener('click', function () {
+            if (confirm('Reset the admin password? You will be asked to create a new one.')) {
+                localStorage.removeItem(HASH_KEY);
+                sessionStorage.removeItem(SESSION_KEY);
+                location.reload();
+            }
+        });
+    }
+    </script>
+
+</body>
+</html>

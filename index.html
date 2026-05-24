@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Pushing forward innovations in engineering" name="description" />
-    <meta content="Valiant" property="og:title" />
+    <meta content="Valiant Scientific" property="og:title" />
 
     <link rel="canonical" href="https://www.valiantscientific.com/" />
     <link href="css/styles.css" rel="stylesheet">
@@ -20,8 +20,7 @@
         data-easing="ease" data-easing2="ease" role="banner" class="nav-bar w-nav">
         <div class="container navigation-container">
             <a href="/" aria-current="page" class="nav-logo w-inline-block w--current">
-                <img src="img/logo_thick.png" loading="lazy" width="Auto" height="Auto" alt="Company Logo"
-                    class="nav-logo-image">
+                <img src="img/logo_thick.png" loading="lazy" alt="Company Logo" class="nav-logo-image">
             </a>
             <div class="nav-menu-button w-nav-button" style="-webkit-user-select: text;" aria-label="menu" role="button"
                 tabindex="0" aria-controls="w-nav-overlay-0" aria-haspopup="menu" aria-expanded="false">
@@ -62,12 +61,12 @@
                     </p>
                 </div>
                 <div class="col">
-                    <img src="img/engine_image.JPG" margin="auto" width="auto" height="auto" alt="">
+                    <img src="img/engine_image.JPG" alt="Engineering system" class="img-fluid">
                 </div>
             </div>
         </div>
-        </div>
     </section>
+
     <section id="expertise" class="section section-hero-small">
         <div class="container">
             <h2 class="heading-h2 text-center mb-4">Our Expertise</h2>
@@ -139,27 +138,28 @@
     <section id="contact" class="section section-contact">
         <div class="container">
             <h2 class="heading-h2 text-center mb-4">Contact Us</h2>
-            <form action="https://formspree.io/f/mqkrgqka" method="POST" class="row g-3">
+            <form id="contact-form" action="https://formspree.io/f/mqkrgqka" method="POST" class="row g-3" novalidate>
                 <div class="col-md-6">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" required>
+                    <input type="text" name="name" class="form-control" id="name" required autocomplete="name">
+                    <div class="invalid-feedback">Please enter your name.</div>
                 </div>
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" name="_replyto" class="form-control" id="email" required>
+                    <input type="email" name="_replyto" class="form-control" id="email" required autocomplete="email">
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
                 </div>
                 <div class="col-12">
                     <label for="message" class="form-label">Message</label>
                     <textarea name="message" class="form-control" id="message" rows="5" required></textarea>
+                    <div class="invalid-feedback">Please enter your message.</div>
                 </div>
-                <input type="hidden" name="_subject" value="New Contact Form Submission">
+                <input type="hidden" name="_subject" value="New Contact Form Submission - Valiant Scientific">
                 <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <div id="form-status" class="mb-2" role="alert" aria-live="polite" style="display: none;"></div>
+                    <button type="submit" id="submit-btn" class="btn btn-primary">Send Message</button>
                 </div>
             </form>
-            <!-- <div class="text-center mt-3">
-                <p>Or email us directly at <a href="mailto:info@valiantscientific.com">info@valiantscientific.com</a></p>
-            </div> -->
         </div>
     </section>
 
@@ -168,28 +168,121 @@
         <div class="container container-footer">
             <div class="footer-bottom-links">
                 <div class="w-layout-grid footer-bottom-links-grid" style="display: flex; justify-content: center;">
-                    <a class="footer-link" style="text-align: center;">Copyright (2025) by Valiant Scientific</a>
+                    <a class="footer-link" style="text-align: center;">Copyright &copy; <span id="copyright-year"></span> by Valiant Scientific</a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+    /* Visitor tracking — records once per browser session */
+    (function () {
+        if (sessionStorage.getItem('vs_tracked')) return;
+        sessionStorage.setItem('vs_tracked', '1');
+        fetch('https://ipapi.co/json/')
+            .then(function (r) { return r.json(); })
+            .then(function (geo) {
+                var entry = {
+                    ts: Date.now(),
+                    country: geo.country_name || 'Unknown',
+                    country_code: (geo.country_code || '').toUpperCase(),
+                    city: geo.city || 'Unknown',
+                    region: geo.region || 'Unknown'
+                };
+                var visits = JSON.parse(localStorage.getItem('vs_visits') || '[]');
+                visits.push(entry);
+                if (visits.length > 1000) visits = visits.slice(-1000);
+                localStorage.setItem('vs_visits', JSON.stringify(visits));
+            })
+            .catch(function () {
+                var visits = JSON.parse(localStorage.getItem('vs_visits') || '[]');
+                visits.push({ ts: Date.now(), country: 'Unknown', country_code: '', city: 'Unknown', region: 'Unknown' });
+                localStorage.setItem('vs_visits', JSON.stringify(visits));
+            });
+    }());
+
+    document.getElementById("copyright-year").textContent = new Date().getFullYear();
+
     document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector('form[action="https://formspree.io/f/mqkrgqka"]');
-        if (form) {
-            const resetBtn = document.createElement("button");
-            resetBtn.type = "button";
-            resetBtn.className = "btn btn-secondary ms-2";
-            resetBtn.textContent = "Reset";
-            resetBtn.onclick = function () {
-                form.reset();
-            };
-            const submitBtn = form.querySelector('button[type="submit"]');
-            if (submitBtn && submitBtn.parentNode) {
-                submitBtn.parentNode.appendChild(resetBtn);
+        const form = document.getElementById("contact-form");
+        const submitBtn = document.getElementById("submit-btn");
+        const formStatus = document.getElementById("form-status");
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        function validateField(input) {
+            const value = input.value.trim();
+            if (!value) {
+                input.classList.add("is-invalid");
+                input.classList.remove("is-valid");
+                return false;
             }
+            if (input.type === "email" && !emailRegex.test(value)) {
+                input.classList.add("is-invalid");
+                input.classList.remove("is-valid");
+                return false;
+            }
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid");
+            return true;
         }
+
+        form.querySelectorAll("input:not([type='hidden']), textarea").forEach(function (input) {
+            input.addEventListener("blur", function () {
+                validateField(this);
+            });
+            input.addEventListener("input", function () {
+                if (this.classList.contains("is-invalid")) {
+                    validateField(this);
+                }
+            });
+        });
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            let valid = true;
+            form.querySelectorAll("input:not([type='hidden']), textarea").forEach(function (input) {
+                if (!validateField(input)) valid = false;
+            });
+            if (!valid) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending…";
+            formStatus.style.display = "none";
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { "Accept": "application/json" }
+                });
+
+                if (response.ok) {
+                    formStatus.textContent = "Your message has been sent. We will be in touch shortly.";
+                    formStatus.className = "mb-2 text-success";
+                    formStatus.style.display = "block";
+                    form.reset();
+                    form.querySelectorAll(".is-valid").forEach(function (el) {
+                        el.classList.remove("is-valid");
+                    });
+                } else {
+                    const data = await response.json().catch(function () { return {}; });
+                    const msg = data.errors
+                        ? data.errors.map(function (err) { return err.message; }).join(", ")
+                        : "Something went wrong. Please try again.";
+                    formStatus.textContent = msg;
+                    formStatus.className = "mb-2 text-danger";
+                    formStatus.style.display = "block";
+                }
+            } catch (_) {
+                formStatus.textContent = "Unable to send your message. Please check your connection and try again.";
+                formStatus.className = "mb-2 text-danger";
+                formStatus.style.display = "block";
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Send Message";
+        });
     });
     </script>
 
