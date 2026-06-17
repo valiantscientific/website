@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Get personalised answers from Valiant Scientific" name="description" />
+    <meta content="Get Help — Valiant Scientific" property="og:title" />
+
+    <link rel="canonical" href="https://www.valiantscientific.com/contact/support.html" />
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <title>Get Help — Valiant Scientific</title>
+
+    <style>
+        .contact-form-section {
+            background-color: var(--brand--neutrals--off-white-background);
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+        }
+
+        .contact-form-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-form-header .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text--default--black-medium);
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .contact-form-header .back-link:hover {
+            color: var(--text--default--black);
+        }
+
+        .contact-form-header h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            line-height: 1.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-form-header p {
+            color: var(--text--default--black-medium);
+            font-size: 1.1rem;
+            line-height: 1.5em;
+        }
+
+        .form-wrapper {
+            background-color: #dde0f0;
+            border-radius: 1.25rem;
+            padding: 3rem 2.5rem;
+            max-width: 700px;
+        }
+    </style>
+</head>
+
+<body>
+    <div data-collapse="medium" data-animation="default" data-duration="300" fs-scrolldisable-element="smart-nav"
+        data-easing="ease" data-easing2="ease" role="banner" class="nav-bar w-nav">
+        <div class="container navigation-container">
+            <a href="/" class="nav-logo w-inline-block">
+                <img src="../img/logo_thick.png" loading="lazy" alt="Company Logo" class="nav-logo-image">
+            </a>
+            <div class="nav-menu-button w-nav-button" style="-webkit-user-select: text;" aria-label="menu" role="button"
+                tabindex="0" aria-controls="w-nav-overlay-0" aria-haspopup="menu" aria-expanded="false">
+                <div class="nav-hamburger-button w-hidden-main"><img
+                        src="https://cdn.prod.website-files.com/684a4337852f75208e38c6a9/684a4337852f75208e38c704_Hamburger%20icon.svg"
+                        loading="lazy" alt="" class="nav-hamburger-icon"><img
+                        src="https://cdn.prod.website-files.com/684a4337852f75208e38c6a9/684a4337852f75208e38c706_close.svg"
+                        loading="lazy" alt="" class="nav-close-ccon">
+                </div>
+            </div>
+            <nav role="navigation" class="nav-links-wrapper w-nav-menu">
+                <div class="nav-inner-container">
+                    <a href="/#expertise" class="nav-link">Expertise</a>
+                    <a href="https://valiantscientific.wordpress.com/" class="nav-link">Blog</a>
+                    <a href="../contact.html" class="nav-link w--current" aria-current="page">Contact</a>
+                </div>
+            </nav>
+        </div>
+        <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-0"></div>
+    </div>
+
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-header">
+                <a href="../contact.html" class="back-link">&#8592; Back to Contact</a>
+                <h1>Get Personalised Answers</h1>
+                <p>Ask us anything — our engineers are here to help with your technical and project questions.</p>
+            </div>
+
+            <div class="form-wrapper">
+                <form id="contact-form" action="https://formspree.io/f/mqkrgqka" method="POST" class="row g-3" novalidate>
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" id="name" required autocomplete="name">
+                        <div class="invalid-feedback">Please enter your name.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="email" required autocomplete="email">
+                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                    </div>
+                    <div class="col-12">
+                        <label for="topic" class="form-label">Topic</label>
+                        <select name="topic" class="form-select" id="topic">
+                            <option value="">Select a topic…</option>
+                            <option value="Digital Twins / CFD">Digital Twins / CFD</option>
+                            <option value="High Performance Computing">High Performance Computing</option>
+                            <option value="Big Data Science">Big Data Science</option>
+                            <option value="Environmental Modeling">Environmental Modeling</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="message" class="form-label">Your Question</label>
+                        <textarea name="message" class="form-control" id="message" rows="5" required></textarea>
+                        <div class="invalid-feedback">Please enter your question.</div>
+                    </div>
+                    <input type="hidden" name="_subject" value="Support Enquiry — Valiant Scientific">
+                    <div class="col-12 text-center">
+                        <div id="form-status" class="mb-2" role="alert" aria-live="polite" style="display: none;"></div>
+                        <button type="submit" id="submit-btn" class="btn btn-primary">Send Question</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-section grey-background">
+        <div class="container container-footer">
+            <div class="footer-bottom-links">
+                <div class="w-layout-grid footer-bottom-links-grid" style="display: flex; justify-content: center;">
+                    <a class="footer-link" style="text-align: center;">Copyright &copy; <span id="copyright-year"></span> by Valiant Scientific</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.getElementById("copyright-year").textContent = new Date().getFullYear();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contact-form");
+        const submitBtn = document.getElementById("submit-btn");
+        const formStatus = document.getElementById("form-status");
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        function validateField(input) {
+            const value = input.value.trim();
+            if (input.required && !value) {
+                input.classList.add("is-invalid");
+                input.classList.remove("is-valid");
+                return false;
+            }
+            if (input.type === "email" && value && !emailRegex.test(value)) {
+                input.classList.add("is-invalid");
+                input.classList.remove("is-valid");
+                return false;
+            }
+            input.classList.remove("is-invalid");
+            if (value) input.classList.add("is-valid");
+            return true;
+        }
+
+        form.querySelectorAll("input:not([type='hidden']), textarea").forEach(function (input) {
+            input.addEventListener("blur", function () { validateField(this); });
+            input.addEventListener("input", function () {
+                if (this.classList.contains("is-invalid")) validateField(this);
+            });
+        });
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            let valid = true;
+            form.querySelectorAll("input:not([type='hidden']), textarea").forEach(function (input) {
+                if (!validateField(input)) valid = false;
+            });
+            if (!valid) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending…";
+            formStatus.style.display = "none";
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { "Accept": "application/json" }
+                });
+
+                if (response.ok) {
+                    formStatus.textContent = "Your question has been sent. We will be in touch shortly.";
+                    formStatus.className = "mb-2 text-success";
+                    formStatus.style.display = "block";
+                    form.reset();
+                    form.querySelectorAll(".is-valid").forEach(function (el) { el.classList.remove("is-valid"); });
+                } else {
+                    const data = await response.json().catch(function () { return {}; });
+                    const msg = data.errors
+                        ? data.errors.map(function (err) { return err.message; }).join(", ")
+                        : "Something went wrong. Please try again.";
+                    formStatus.textContent = msg;
+                    formStatus.className = "mb-2 text-danger";
+                    formStatus.style.display = "block";
+                }
+            } catch (_) {
+                formStatus.textContent = "Unable to send your message. Please check your connection and try again.";
+                formStatus.className = "mb-2 text-danger";
+                formStatus.style.display = "block";
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Send Question";
+        });
+    });
+    </script>
+    <script src="../js/nav.js"></script>
+</body>
+
+</html>

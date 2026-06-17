@@ -35,7 +35,7 @@
                 <div class="nav-inner-container">
                     <a href="#expertise" class="nav-link">Expertise</a>
                     <a href="https://valiantscientific.wordpress.com/" class="nav-link">Blog</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
                 </div>
             </nav>
         </div>
@@ -59,6 +59,15 @@
                         to the most efficient predictive deep learning models. Our broad expertise is in industrial
                         application software, high performance computing, and artificial intelligence.
                     </p>
+                    <br/>
+                    <p words-slide-up="" text-split="" data-w-id="56e548e9-1f27-74c2-8292-27a5ee61b47a"
+                        style="opacity: 1; transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+                        class="paragraph-18">
+                        Our team is made up of engineers and scientists with many years of experience in
+                        numerical analysis, computational fluid dynamics, computational statistics, and machine learning.
+                        We also have a strong background in computer aided engineering, software development and system integration.
+                    </p>
+
                 </div>
                 <div class="col">
                     <img src="img/engine_image.JPG" alt="Engineering system" class="img-fluid">
@@ -135,33 +144,6 @@
         </div>
     </section>
 
-    <section id="contact" class="section section-contact">
-        <div class="container">
-            <h2 class="heading-h2 text-center mb-4">Contact Us</h2>
-            <form id="contact-form" action="https://formspree.io/f/mqkrgqka" method="POST" class="row g-3" novalidate>
-                <div class="col-md-6">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" required autocomplete="name">
-                    <div class="invalid-feedback">Please enter your name.</div>
-                </div>
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" required autocomplete="email">
-                    <div class="invalid-feedback">Please enter a valid email address.</div>
-                </div>
-                <div class="col-12">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea name="message" class="form-control" id="message" rows="5" required></textarea>
-                    <div class="invalid-feedback">Please enter your message.</div>
-                </div>
-                <input type="hidden" name="_subject" value="New Contact Form Submission - Valiant Scientific">
-                <div class="col-12 text-center">
-                    <div id="form-status" class="mb-2" role="alert" aria-live="polite" style="display: none;"></div>
-                    <button type="submit" id="submit-btn" class="btn btn-primary">Send Message</button>
-                </div>
-            </form>
-        </div>
-    </section>
 
 
     <div class="footer-section grey-background">
@@ -203,88 +185,8 @@
 
     document.getElementById("copyright-year").textContent = new Date().getFullYear();
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("contact-form");
-        const submitBtn = document.getElementById("submit-btn");
-        const formStatus = document.getElementById("form-status");
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        function validateField(input) {
-            const value = input.value.trim();
-            if (!value) {
-                input.classList.add("is-invalid");
-                input.classList.remove("is-valid");
-                return false;
-            }
-            if (input.type === "email" && !emailRegex.test(value)) {
-                input.classList.add("is-invalid");
-                input.classList.remove("is-valid");
-                return false;
-            }
-            input.classList.remove("is-invalid");
-            input.classList.add("is-valid");
-            return true;
-        }
-
-        form.querySelectorAll("input:not([type='hidden']), textarea").forEach(function (input) {
-            input.addEventListener("blur", function () {
-                validateField(this);
-            });
-            input.addEventListener("input", function () {
-                if (this.classList.contains("is-invalid")) {
-                    validateField(this);
-                }
-            });
-        });
-
-        form.addEventListener("submit", async function (e) {
-            e.preventDefault();
-
-            let valid = true;
-            form.querySelectorAll("input:not([type='hidden']), textarea").forEach(function (input) {
-                if (!validateField(input)) valid = false;
-            });
-            if (!valid) return;
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Sending…";
-            formStatus.style.display = "none";
-
-            try {
-                const response = await fetch(form.action, {
-                    method: "POST",
-                    body: new FormData(form),
-                    headers: { "Accept": "application/json" }
-                });
-
-                if (response.ok) {
-                    formStatus.textContent = "Your message has been sent. We will be in touch shortly.";
-                    formStatus.className = "mb-2 text-success";
-                    formStatus.style.display = "block";
-                    form.reset();
-                    form.querySelectorAll(".is-valid").forEach(function (el) {
-                        el.classList.remove("is-valid");
-                    });
-                } else {
-                    const data = await response.json().catch(function () { return {}; });
-                    const msg = data.errors
-                        ? data.errors.map(function (err) { return err.message; }).join(", ")
-                        : "Something went wrong. Please try again.";
-                    formStatus.textContent = msg;
-                    formStatus.className = "mb-2 text-danger";
-                    formStatus.style.display = "block";
-                }
-            } catch (_) {
-                formStatus.textContent = "Unable to send your message. Please check your connection and try again.";
-                formStatus.className = "mb-2 text-danger";
-                formStatus.style.display = "block";
-            }
-
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Send Message";
-        });
-    });
     </script>
+    <script src="js/nav.js"></script>
 
 </body>
 

@@ -6655,3 +6655,17 @@ figure {
   }
 }
 */
+
+@media screen and (max-width: 991px) {
+  .nav-menu-button.w--open .nav-close-ccon {
+    opacity: 1;
+  }
+
+  .nav-menu-button.w--open .nav-hamburger-icon {
+    opacity: 0;
+  }
+
+  .nav-links-wrapper[data-nav-menu-open] {
+    display: flex !important;
+  }
+}
