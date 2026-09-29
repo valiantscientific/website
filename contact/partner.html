@@ -14,52 +14,6 @@
 
     <title>Become a Partner — Valiant Scientific</title>
 
-    <style>
-        .contact-form-section {
-            background-color: var(--brand--neutrals--off-white-background);
-            padding-top: 8rem;
-            padding-bottom: 8rem;
-        }
-
-        .contact-form-header {
-            margin-bottom: 2.5rem;
-        }
-
-        .contact-form-header .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--text--default--black-medium);
-            font-size: 0.9rem;
-            text-decoration: none;
-            margin-bottom: 1.5rem;
-            transition: color 0.2s;
-        }
-
-        .contact-form-header .back-link:hover {
-            color: var(--text--default--black);
-        }
-
-        .contact-form-header h1 {
-            font-size: 2.8rem;
-            font-weight: 500;
-            line-height: 1.1em;
-            margin-bottom: 0.75rem;
-        }
-
-        .contact-form-header p {
-            color: var(--text--default--black-medium);
-            font-size: 1.1rem;
-            line-height: 1.5em;
-        }
-
-        .form-wrapper {
-            background-color: #dde0f0;
-            border-radius: 1.25rem;
-            padding: 3rem 2.5rem;
-            max-width: 700px;
-        }
-    </style>
 </head>
 
 <body>
@@ -69,7 +23,7 @@
             <a href="/" class="nav-logo w-inline-block">
                 <img src="../img/logo_thick.png" loading="lazy" alt="Company Logo" class="nav-logo-image">
             </a>
-            <div class="nav-menu-button w-nav-button" style="-webkit-user-select: text;" aria-label="menu" role="button"
+            <div class="nav-menu-button w-nav-button" aria-label="menu" role="button"
                 tabindex="0" aria-controls="w-nav-overlay-0" aria-haspopup="menu" aria-expanded="false">
                 <div class="nav-hamburger-button w-hidden-main"><img
                         src="https://cdn.prod.website-files.com/684a4337852f75208e38c6a9/684a4337852f75208e38c704_Hamburger%20icon.svg"
@@ -80,6 +34,7 @@
             </div>
             <nav role="navigation" class="nav-links-wrapper w-nav-menu">
                 <div class="nav-inner-container">
+                    <a href="/#applications" class="nav-link">Applications</a>
                     <a href="/#expertise" class="nav-link">Expertise</a>
                     <a href="https://valiantscientific.wordpress.com/" class="nav-link">Blog</a>
                     <a href="../contact.html" class="nav-link w--current" aria-current="page">Contact</a>
@@ -89,12 +44,12 @@
         <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-0"></div>
     </div>
 
-    <section class="contact-form-section">
+    <section class="page-section">
         <div class="container">
-            <div class="contact-form-header">
+            <div class="page-header">
                 <a href="../contact.html" class="back-link">&#8592; Back to Contact</a>
-                <h1>Become a Partner</h1>
-                <p>Reach out about exciting partnership and business development opportunities with Valiant Scientific.</p>
+                <h1 class="page-title">Become a Partner</h1>
+                <p class="page-lead">Reach out about exciting partnership and business development opportunities with Valiant Scientific.</p>
             </div>
 
             <div class="form-wrapper">
@@ -131,8 +86,8 @@
                     </div>
                     <input type="hidden" name="_subject" value="Partnership Enquiry — Valiant Scientific">
                     <div class="col-12 text-center">
-                        <div id="form-status" class="mb-2" role="alert" aria-live="polite" style="display: none;"></div>
-                        <button type="submit" id="submit-btn" class="btn btn-primary">Send Enquiry</button>
+                        <div id="form-status" class="mb-2" role="alert" aria-live="polite" hidden></div>
+                        <button type="submit" id="submit-btn" class="btn-vs btn-vs-solid">Send Enquiry</button>
                     </div>
                 </form>
             </div>
@@ -142,8 +97,8 @@
     <div class="footer-section grey-background">
         <div class="container container-footer">
             <div class="footer-bottom-links">
-                <div class="w-layout-grid footer-bottom-links-grid" style="display: flex; justify-content: center;">
-                    <a class="footer-link" style="text-align: center;">Copyright &copy; <span id="copyright-year"></span> by Valiant Scientific</a>
+                <div class="w-layout-grid footer-bottom-links-grid">
+                    <a class="footer-link">Copyright &copy; <span id="copyright-year"></span> by Valiant Scientific</a>
                 </div>
             </div>
         </div>
@@ -192,7 +147,7 @@
 
             submitBtn.disabled = true;
             submitBtn.textContent = "Sending…";
-            formStatus.style.display = "none";
+            formStatus.hidden = true;
 
             try {
                 const response = await fetch(form.action, {
@@ -204,7 +159,7 @@
                 if (response.ok) {
                     formStatus.textContent = "Your enquiry has been sent. We will be in touch shortly.";
                     formStatus.className = "mb-2 text-success";
-                    formStatus.style.display = "block";
+                    formStatus.hidden = false;
                     form.reset();
                     form.querySelectorAll(".is-valid").forEach(function (el) { el.classList.remove("is-valid"); });
                 } else {
@@ -214,12 +169,12 @@
                         : "Something went wrong. Please try again.";
                     formStatus.textContent = msg;
                     formStatus.className = "mb-2 text-danger";
-                    formStatus.style.display = "block";
+                    formStatus.hidden = false;
                 }
             } catch (_) {
                 formStatus.textContent = "Unable to send your message. Please check your connection and try again.";
                 formStatus.className = "mb-2 text-danger";
-                formStatus.style.display = "block";
+                formStatus.hidden = false;
             }
 
             submitBtn.disabled = false;

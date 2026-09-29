@@ -2800,6 +2800,7 @@ figure {
 
 .footer-link {
   color: var(--text--default--black);
+  text-align: center;
   font-size: 1rem;
   line-height: 1.5rem;
   text-decoration: none;
@@ -2822,6 +2823,7 @@ figure {
   grid-template-columns: max-content max-content max-content;
   width: auto;
   display: flex;
+  justify-content: center;
 }
 
 /* UNUSED
@@ -3048,7 +3050,7 @@ figure {
 
 .footer-bottom-links {
   flex-flow: wrap;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   display: flex;
 }
@@ -3146,6 +3148,8 @@ figure {
 }
 
 .nav-menu-button {
+  -webkit-user-select: text;
+  user-select: text;
   padding: 0;
 }
 
@@ -3587,6 +3591,7 @@ figure {
 }
 */
 
+/* UNUSED
 .card {
   background-color: var(--brand--neutrals--card-grey);
   border-radius: 1.5rem;
@@ -3598,6 +3603,7 @@ figure {
   position: relative;
   overflow: hidden;
 }
+*/
 
 /* UNUSED
 .card.card-large-padding {
@@ -5384,9 +5390,11 @@ figure {
   }
   */
 
+  /* UNUSED
   .card {
     border-radius: 1rem;
   }
+  */
 
   /* UNUSED
   .card.card-large-padding {
@@ -6668,4 +6676,476 @@ figure {
   .nav-links-wrapper[data-nav-menu-open] {
     display: flex !important;
   }
+}
+
+/* ==========================================================================
+   Valiant Scientific site styles
+   Everything below is hand-written for this site (not part of the Webflow
+   export above). Page-level <style> blocks and inline style="" attributes
+   should not be used; add rules here instead.
+   ========================================================================== */
+
+:root {
+  --vs-ink: #1a2a4a;
+  --vs-ink-soft: #3a4a6a;
+  --vs-ink-muted: #c9d0e0;
+  --vs-rule: #e3e3e3;
+  --vs-panel: #dde0f0;
+  --vs-panel-hover: #cdd0e8;
+  --vs-radius: 1rem;
+  --vs-radius-lg: 1.25rem;
+}
+
+/* ---------- Shared: labels, buttons ---------- */
+.eyebrow {
+  display: inline-block;
+  color: var(--brand--neutrals--grey-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.btn-vs {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  border: 1.5px solid var(--vs-ink);
+  border-radius: 2rem;
+  background-color: transparent;
+  color: var(--vs-ink);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-vs:hover,
+.btn-vs.btn-vs-solid {
+  background-color: var(--vs-ink);
+  color: #fff;
+}
+
+.btn-vs.btn-vs-solid:hover {
+  background-color: var(--vs-ink-soft);
+  border-color: var(--vs-ink-soft);
+}
+
+.btn-vs:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ---------- Shared: page title block (hero and inner pages) ---------- */
+.page-section {
+  background-color: var(--brand--neutrals--off-white-background);
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+.page-title {
+  color: var(--vs-ink);
+  font-size: clamp(2.25rem, 1.4rem + 3vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0 0 1rem;
+}
+
+.page-lead {
+  color: var(--text--default--black-medium);
+  font-size: 1.15rem;
+  line-height: 1.55;
+  max-width: 40rem;
+  margin-bottom: 0;
+}
+
+.page-header {
+  margin-bottom: 3rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text--default--black-medium);
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--vs-ink);
+}
+
+/* ---------- Shared: content sections ---------- */
+.home-section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.home-section.alt {
+  background-color: var(--brand--neutrals--off-white-background);
+}
+
+.section-intro {
+  max-width: 44rem;
+  margin-bottom: 3rem;
+}
+
+.section-intro h2 {
+  color: var(--vs-ink);
+  font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.section-intro p {
+  color: var(--text--default--black-medium);
+  font-size: 1.1rem;
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+/* ---------- Home: hero ---------- */
+.home-hero {
+  background-color: var(--brand--neutrals--off-white-background);
+  padding-top: 9rem;
+  padding-bottom: 5rem;
+}
+
+.home-hero .page-title {
+  max-width: 18ch;
+  margin-bottom: 1.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.hero-figure {
+  margin: 3.5rem 0 0;
+}
+
+.hero-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--vs-radius-lg);
+  box-shadow: 0 1px 2px rgba(26, 42, 74, 0.06), 0 12px 40px rgba(26, 42, 74, 0.12);
+}
+
+.hero-figure figcaption {
+  text-align: left;
+  color: var(--text--default--black-light);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 52rem;
+  margin-top: 1rem;
+}
+
+/* ---------- Home: applications ---------- */
+.app-card {
+  height: 100%;
+  background: #fff;
+  border: 1px solid var(--vs-rule);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--vs-radius);
+  padding: 2rem 1.75rem;
+}
+
+.app-card.bio {
+  --accent: var(--brand--color--blue);
+  --accent-light: var(--brand--color--blue-light);
+}
+
+.app-card.chem {
+  --accent: var(--brand--color--orange);
+  --accent-light: var(--brand--color--orange-light);
+}
+
+.app-card.cat {
+  --accent: var(--brand--color--green);
+  --accent-light: var(--brand--color--green-light);
+}
+
+.app-tag {
+  display: inline-block;
+  background-color: var(--accent-light);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+}
+
+.app-card h3 {
+  color: var(--vs-ink);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+
+.app-card p {
+  color: var(--text--default--black-medium);
+  line-height: 1.55;
+}
+
+.app-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  border-top: 1px solid var(--vs-rule);
+}
+
+.app-card li {
+  color: var(--vs-ink-soft);
+  font-size: 0.95rem;
+  padding: 0.6rem 0 0.6rem 1.1rem;
+  border-bottom: 1px solid var(--vs-rule);
+  position: relative;
+}
+
+.app-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.05rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+/* ---------- Home: expertise ---------- */
+.capability {
+  height: 100%;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--vs-ink);
+}
+
+.capability h3 {
+  color: var(--vs-ink);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.6rem;
+}
+
+.capability p {
+  color: var(--text--default--black-medium);
+  font-size: 0.97rem;
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+/* ---------- Home: approach ---------- */
+.step {
+  height: 100%;
+  background-color: var(--brand--neutrals--off-white-background);
+  border-radius: var(--vs-radius);
+  padding: 2rem 1.75rem;
+}
+
+.step-num {
+  display: block;
+  color: var(--brand--neutrals--grey-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.step h3 {
+  color: var(--vs-ink);
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+
+.step p {
+  color: var(--text--default--black-medium);
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+/* ---------- Home: closing call to action ---------- */
+.cta-band {
+  background-color: var(--vs-ink);
+  color: #fff;
+  border-radius: var(--vs-radius-lg);
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.cta-band h2 {
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+
+.cta-band p {
+  color: var(--vs-ink-muted);
+  margin: 0;
+  max-width: 36rem;
+}
+
+.cta-band .btn-vs {
+  border-color: #fff;
+  background-color: #fff;
+  color: var(--vs-ink);
+}
+
+.cta-band .btn-vs:hover {
+  background-color: transparent;
+  color: #fff;
+}
+
+/* ---------- Contact hub (contact.html) ---------- */
+.contact-card {
+  background-color: var(--vs-panel);
+  border-radius: var(--vs-radius-lg);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 260px;
+  transition: background-color 0.2s;
+}
+
+.contact-card:hover {
+  background-color: var(--vs-panel-hover);
+}
+
+.contact-card h3 {
+  color: var(--vs-ink);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.contact-card p {
+  color: var(--vs-ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.contact-card .btn-vs {
+  align-self: flex-start;
+  margin-top: 2rem;
+}
+
+/* ---------- Contact forms (contact/sales, support, partner) ---------- */
+.form-wrapper {
+  background-color: var(--vs-panel);
+  border-radius: var(--vs-radius-lg);
+  padding: 3rem 2.5rem;
+  max-width: 700px;
+}
+
+.form-wrapper .form-label {
+  color: var(--vs-ink);
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.form-wrapper .form-control:focus {
+  border-color: var(--vs-ink-soft);
+  box-shadow: 0 0 0 0.2rem rgba(26, 42, 74, 0.15);
+}
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 767px) {
+  .page-section {
+    padding-top: 7rem;
+    padding-bottom: 4rem;
+  }
+
+  .home-hero {
+    padding-top: 7rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .hero-figure {
+    margin-top: 2.5rem;
+  }
+
+  .hero-figure img {
+    border-radius: 0.75rem;
+  }
+
+  .home-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .cta-band {
+    padding: 2.25rem 1.5rem;
+  }
+
+  .form-wrapper {
+    padding: 2rem 1.25rem;
+  }
+}
+
+/* ---------- Analytics dashboard (analytics.html) ---------- */
+body.analytics-page {
+  background: #f5f6f8;
+}
+
+.analytics-page .stat-card .value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.analytics-page .stat-card .label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+.analytics-page .flag {
+  font-size: 1.1rem;
+  margin-right: 0.35rem;
+}
+
+.analytics-page #login-wrap,
+.analytics-page #setup-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.analytics-page .auth-card {
+  width: 22rem;
+}
+
+.analytics-navbar {
+  background-color: var(--vs-ink);
+}
+
+.analytics-page .table-scroll {
+  max-height: 420px;
+  overflow-y: auto;
 }

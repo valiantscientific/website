@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Pushing forward innovations in engineering" name="description" />
+    <meta content="Predictive transport, reaction and binding models for biomedical, chemical and catalytic systems." name="description" />
     <meta content="Valiant Scientific" property="og:title" />
 
     <link rel="canonical" href="https://www.valiantscientific.com/" />
@@ -13,6 +13,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <title>Valiant Scientific</title>
+
 </head>
 
 <body>
@@ -22,7 +23,7 @@
             <a href="/" aria-current="page" class="nav-logo w-inline-block w--current">
                 <img src="img/logo_thick.png" loading="lazy" alt="Company Logo" class="nav-logo-image">
             </a>
-            <div class="nav-menu-button w-nav-button" style="-webkit-user-select: text;" aria-label="menu" role="button"
+            <div class="nav-menu-button w-nav-button" aria-label="menu" role="button"
                 tabindex="0" aria-controls="w-nav-overlay-0" aria-haspopup="menu" aria-expanded="false">
                 <div class="nav-hamburger-button w-hidden-main"><img
                         src="https://cdn.prod.website-files.com/684a4337852f75208e38c6a9/684a4337852f75208e38c704_Hamburger%20icon.svg"
@@ -33,6 +34,7 @@
             </div>
             <nav role="navigation" class="nav-links-wrapper w-nav-menu">
                 <div class="nav-inner-container">
+                    <a href="#applications" class="nav-link">Applications</a>
                     <a href="#expertise" class="nav-link">Expertise</a>
                     <a href="https://valiantscientific.wordpress.com/" class="nav-link">Blog</a>
                     <a href="contact.html" class="nav-link">Contact</a>
@@ -42,125 +44,188 @@
         <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-0"></div>
     </div>
 
-    <section class="section section-hp-hero">
+    <section class="home-hero">
         <div class="container">
-            <div class="hp-hero-wrapper">
-                <h1 data-w-id="56e548e9-1f27-74c2-8292-27a5ee61b477" style="max-width: 100%;" class="display-heading-1">
-                    Comprehensive Engineering Solutions
-                </h1>
+            <span class="eyebrow">Biomedical &middot; Chemical &middot; Catalytic</span>
+            <h1 class="page-title">Predictive models for transport, reaction and binding</h1>
+            <p class="page-lead">
+                Valiant Scientific builds simulation and scientific machine learning tools for the systems where
+                flow meets chemistry: microfluidic assays, reactors and catalytic surfaces. We turn first-principles
+                physics and your experimental data into models you can design with.
+            </p>
+            <div class="hero-actions">
+                <a href="contact/sales.html" class="btn-vs btn-vs-solid">Discuss your problem</a>
+                <a href="#applications" class="btn-vs">See applications</a>
             </div>
-            <div class="row align-items-start">
-                <div class="col">
-                    <p words-slide-up="" text-split="" data-w-id="56e548e9-1f27-74c2-8292-27a5ee61b47a"
-                        style="opacity: 1; transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
-                        class="paragraph-18">At Valiant Scientific, our cutting edge innovative solutions
-                        deliver for your data, simulation and general engineering demands. From state of the art digital
-                        twin models
-                        to the most efficient predictive deep learning models. Our broad expertise is in industrial
-                        application software, high performance computing, and artificial intelligence.
-                    </p>
-                    <br/>
-                    <p words-slide-up="" text-split="" data-w-id="56e548e9-1f27-74c2-8292-27a5ee61b47a"
-                        style="opacity: 1; transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
-                        class="paragraph-18">
-                        Our team is made up of engineers and scientists with many years of experience in
-                        numerical analysis, computational fluid dynamics, computational statistics, and machine learning.
-                        We also have a strong background in computer aided engineering, software development and system integration.
-                    </p>
 
+            <figure class="hero-figure">
+                <img src="img/microfluidic.jpg" width="1408" height="768"
+                    alt="Microfluidic slide with a 500 micrometre channel. A fluorescent green binding zone marks where analyte adsorbs to the surface, with a concentration colour bar from 0 to C0 and a handheld reader plotting capture efficiency against Péclet number.">
+                <figcaption>
+                    Analyte transport and surface capture in a 500&nbsp;&micro;m microfluidic channel. Coupling
+                    advection&ndash;diffusion of concentration <i>C</i> with binding kinetics at the wall resolves the
+                    bound surface density &Gamma; and how capture efficiency depends on the P&eacute;clet number.
+                </figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section id="applications" class="home-section">
+        <div class="container">
+            <div class="section-intro">
+                <span class="eyebrow">Applications</span>
+                <h2>Where we work</h2>
+                <p>
+                    Our models share one core: coupled fluid flow, species transport and surface or bulk reactions.
+                    That common foundation lets us move quickly across three closely related fields.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-12 col-lg-4">
+                    <div class="app-card bio">
+                        <span class="app-tag">Biomedical</span>
+                        <h3>Biosensors &amp; lab-on-chip</h3>
+                        <p>Quantitative models of assay devices and biological transport, from channel design to
+                            calibrating binding constants against measured signal.</p>
+                        <ul>
+                            <li>Microfluidic immunoassays and surface capture</li>
+                            <li>Organ-on-chip and cell culture flow environments</li>
+                            <li>Drug delivery and transport in tissue</li>
+                            <li>Hemodynamics and wall shear stress</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col">
-                    <img src="img/engine_image.JPG" alt="Engineering system" class="img-fluid">
+                <div class="col-12 col-lg-4">
+                    <div class="app-card chem">
+                        <span class="app-tag">Chemical</span>
+                        <h3>Reactors &amp; process design</h3>
+                        <p>Simulation-driven design and scale-up of chemical processes, with fast surrogate models for
+                            optimisation and control.</p>
+                        <ul>
+                            <li>Reactor design, mixing and residence time distribution</li>
+                            <li>Multiphase flow with heat and mass transfer</li>
+                            <li>Continuous-flow and microreactor chemistry</li>
+                            <li>Separation and purification processes</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="app-card cat">
+                        <span class="app-tag">Catalytic</span>
+                        <h3>Surface reactions &amp; catalysis</h3>
+                        <p>Linking surface kinetics to reactor-scale performance, so catalyst and support choices can
+                            be evaluated before they are built.</p>
+                        <ul>
+                            <li>Heterogeneous catalysis and microkinetic modelling</li>
+                            <li>Adsorption, desorption and site-coverage dynamics</li>
+                            <li>Porous media, packed beds and washcoats</li>
+                            <li>Electrocatalysis and electrode transport</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="expertise" class="section section-hero-small">
+    <section id="expertise" class="home-section alt">
         <div class="container">
-            <h2 class="heading-h2 text-center mb-4">Our Expertise</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title" style="background-color: rgb(219, 216, 213);">Digital Twins Technologies in CFD</h5>
-                            <p class="card-text">Advanced computational fluid dynamics models for digital twin applications, enabling real-time simulation and optimization of engineering systems.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title" style="background-color: rgb(219, 216, 213);">Physics Informed Deep Learning</h5>
-                            <p class="card-text">Physics-Informed Neural Networks (PINNs) that integrate physical laws with machine learning to solve complex engineering problems with higher accuracy and interpretability.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="section-intro">
+                <span class="eyebrow">Expertise</span>
+                <h2>The methods behind the models</h2>
+                <p>
+                    Our engineers and scientists bring years of experience in numerical analysis, computational fluid
+                    dynamics, computational statistics and machine learning, backed by solid software engineering
+                    and system integration.
+                </p>
+            </div>
 
-
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 g-lg-5">
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title" style="background-color: rgb(219, 216, 213);">High Performance Computing</h5>
-                            <p class="card-text">Expertise in scalable HPC solutions for complex simulations, accelerating research and development with efficient parallel computing architectures.</p>
-                        </div>
+                    <div class="capability">
+                        <h3>Reacting-Flow CFD &amp; Digital Twins</h3>
+                        <p>Coupled flow, transport and reaction solvers packaged as digital twins for real-time
+                            monitoring and optimisation of devices and processes.</p>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title" style="background-color: rgb(219, 216, 213);">Scientific Big Data Engineering</h5>
-                            <p class="card-text">Robust data engineering and analytics for large-scale scientific datasets, driving insights and innovation through machine learning. From STL files to detailed HDF5 & Zarr data.</p>
-                        </div>
+                    <div class="capability">
+                        <h3>Physics-Informed Deep Learning</h3>
+                        <p>Neural networks constrained by conservation laws and kinetic models, for fast surrogates and
+                            for recovering rate constants and parameters from sparse experimental data.</p>
                     </div>
                 </div>
-                <!-- <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title" style="background-color: rgb(219, 216, 213);">Environmental Modeling and Impact Assessment</h5>
-                            <p class="card-text">Comprehensive modeling of environmental systems and assessment of impacts, supporting sustainable engineering and regulatory compliance.</p>
-                        </div>
+                <div class="col">
+                    <div class="capability">
+                        <h3>High Performance Computing</h3>
+                        <p>Scalable parallel solvers for large parameter sweeps, uncertainty quantification and
+                            design optimisation that would be impractical on a workstation.</p>
                     </div>
-                </div> -->
+                </div>
+                <div class="col">
+                    <div class="capability">
+                        <h3>Scientific Data Engineering</h3>
+                        <p>Pipelines that connect geometry, simulation output and lab measurements, from STL files to
+                            HDF5 and Zarr datasets ready for analysis and training.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- <section class="section section-hp-hero">
+    <section class="home-section">
         <div class="container">
-            <div class="hp-hero-wrapper">
-                <h2 id="w-node-f1b16483-e486-9802-6463-c1db91fb028d-8e38c6f2" class="heading-h2">About
-                </h2>
-
+            <div class="section-intro">
+                <span class="eyebrow">Scientific ML Reimagined</span>
+                <h2>Data-driven multiphysics</h2>
+                <p>
+                    We pair rigorous physics with machine learning. That gives predictions you can trust outside
+                    the training data, at a speed that makes design exploration practical.
+                </p>
             </div>
-        </div>
-    </section> -->
 
-    <section class="section section-hp-hero">
-        <div class="w-layout-blockcontainer container w-container">
-            <div class="heading-max-width-wrapper">
-                <div class="label-heading">Scientific ML Reimagined</div>
-                <h2 id="w-node-f1b16483-e486-9802-6463-c1db91fb028d-8e38c6f2" class="heading-h2">
-                    Data Driven Multiphysics
-                </h2>
-                <div class="paragraph-18 margin-bottom-1rem">Our approach leverages advanced machine
-                    learning techniques to enhance multiphysics simulations, enabling more accurate
-                    predictions and optimized designs. Bleeding edge research in HPC results in more
-                    efficient algorithms that can handle complex, large-scale problems across various
-                    domains.
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <div class="step">
+                        <span class="step-num">01</span>
+                        <h3>Model</h3>
+                        <p>Build first-principles models of the governing physics: advection&ndash;diffusion,
+                            reaction kinetics, adsorption isotherms and heat transfer.</p>
+                    </div>
                 </div>
+                <div class="col-12 col-md-4">
+                    <div class="step">
+                        <span class="step-num">02</span>
+                        <h3>Learn</h3>
+                        <p>Calibrate against your measurements with physics-informed learning, identifying unknown
+                            parameters and quantifying their uncertainty.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="step">
+                        <span class="step-num">03</span>
+                        <h3>Scale</h3>
+                        <p>Deploy fast surrogates and HPC workflows to explore designs, optimise operating conditions
+                            and support decisions in real time.</p>
+                    </div>
+                </div>
+            </div>
 
+            <div class="cta-band mt-5">
+                <div>
+                    <h2>Have a transport or kinetics problem?</h2>
+                    <p>Tell us about your device, reactor or catalyst and we'll scope how modelling can help.</p>
+                </div>
+                <a href="contact.html" class="btn-vs">Get in touch</a>
             </div>
         </div>
     </section>
-
-
 
     <div class="footer-section grey-background">
         <div class="container container-footer">
             <div class="footer-bottom-links">
-                <div class="w-layout-grid footer-bottom-links-grid" style="display: flex; justify-content: center;">
-                    <a class="footer-link" style="text-align: center;">Copyright &copy; <span id="copyright-year"></span> by Valiant Scientific</a>
+                <div class="w-layout-grid footer-bottom-links-grid">
+                    <a class="footer-link">Copyright &copy; <span id="copyright-year"></span> by Valiant Scientific</a>
                 </div>
             </div>
         </div>
